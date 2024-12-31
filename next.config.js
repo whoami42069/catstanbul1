@@ -4,6 +4,15 @@ const nextConfig = {
     swcMinify: true,
     images: {
         unoptimized: true
+    },
+    async redirects() {
+        return [
+            {
+                source: '/istanbul-guide',
+                destination: '/',
+                permanent: true,
+            },
+        ]
     }
 }
 
