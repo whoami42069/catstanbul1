@@ -32,6 +32,27 @@ const safetyTips: SafetyTip[] = [
 
 const districts: District[] = [
     {
+        name: "Fatih",
+        description: "The heart of historic Istanbul, home to iconic landmarks like Hagia Sophia and Blue Mosque. Traditional neighborhoods with authentic Turkish life, bazaars, and centuries-old architecture.",
+        landmark: "Sultanahmet Square",
+        priceRange: "$$",
+        coordinates: [41.0186, 28.9397] as [number, number]
+    },
+    {
+        name: "Cihangir",
+        description: "Bohemian neighborhood with charming cafes, art galleries, and antique shops. Known for its creative community, beautiful architecture, and cat-friendly streets with Bosphorus views.",
+        landmark: "Cihangir Mosque",
+        priceRange: "$$-$$$",
+        coordinates: [41.0317, 28.9833] as [number, number]
+    },
+    {
+        name: "Kadıköy",
+        description: "Vibrant cultural hub on the Asian side, known for its art scene, trendy cafes, bars, and food markets. Popular among young people and artists with a bohemian atmosphere.",
+        landmark: "Kadıköy Market",
+        priceRange: "$$",
+        coordinates: [40.9906, 29.0233] as [number, number]
+    },
+    {
         name: "Nişantaşı",
         description: "Luxury shopping and fine dining district",
         landmark: "Nişantaşı City's Mall",
@@ -66,6 +87,45 @@ const districts: District[] = [
         priceRange: "$$$",
         coordinates: [41.0776519, 29.0440416] as [number, number]
     },
+    {
+        name: "Etiler",
+        description: "Upscale residential area known for high-end restaurants, trendy cafes, and luxury shopping. Popular for its vibrant nightlife and exclusive rooftop venues with Bosphorus views.",
+        landmark: "Akmerkez Shopping Mall",
+        priceRange: "$$$",
+        coordinates: [41.0819, 29.0328] as [number, number]
+    },
+    {
+        name: "Tarlabaşı ⚠️ DO NOT GO",
+        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Known for high crime rates and unsafe conditions, especially at night. Stay away from this district for your safety.",
+        landmark: "Avoid Area",
+        priceRange: "N/A",
+        coordinates: [41.0382, 28.9729] as [number, number],
+        isRedZone: true
+    },
+    {
+        name: "Kuştepe ⚠️ DO NOT GO",
+        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Unsafe neighborhood with high risk of crime. Not recommended for tourists or locals.",
+        landmark: "Avoid Area",
+        priceRange: "N/A",
+        coordinates: [41.0679, 28.9897] as [number, number],
+        isRedZone: true
+    },
+    {
+        name: "Dolapdere ⚠️ DO NOT GO",
+        description: "⛔ DANGEROUS AREA - DO NOT VISIT! High-risk area, especially after dark. Stay away from this district for your safety.",
+        landmark: "Avoid Area",
+        priceRange: "N/A",
+        coordinates: [41.0424, 28.9741] as [number, number],
+        isRedZone: true
+    },
+    {
+        name: "Esenyurt ⚠️ DO NOT GO",
+        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Far from tourist areas and known for safety issues. Not recommended for visitors.",
+        landmark: "Avoid Area",
+        priceRange: "N/A",
+        coordinates: [41.0289, 28.6728] as [number, number],
+        isRedZone: true
+    }
 ];
 
 interface TabPanelProps {
