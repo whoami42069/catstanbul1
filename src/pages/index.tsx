@@ -259,4 +259,9 @@ const IstanbulGuide: React.FC = () => {
     );
 };
 
-export default IstanbulGuide; 
+export default IstanbulGuide;
+
+// Add static page configuration
+export const config = {
+    unstable_runtimeJS: false
+}; 
