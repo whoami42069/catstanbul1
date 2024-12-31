@@ -2,9 +2,6 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    output: 'standalone',
-    trailingSlash: false,
-    basePath: '',
     webpack: (config) => {
         config.resolve.fallback = { fs: false };
         return config;
