@@ -13,6 +13,15 @@ interface FoodSpot extends Location {
 
 const foodSpots: Location[] = [
     {
+        name: "Karaköy Güllüoğlu",
+        coordinates: [41.024886, 28.9809764],
+        description: "Best baklava in Istanbul - A historic institution famous for traditional Turkish desserts",
+        cuisine: "Turkish Desserts",
+        specialty: "Baklava",
+        priceRange: "$$",
+        contact: "(0212) 249 96 80"
+    },
+    {
         name: "Alaf 2tek",
         coordinates: [41.0602622, 29.0365668],
         description: "A fusion of Anatolian and modern cuisine",
