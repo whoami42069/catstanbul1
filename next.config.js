@@ -2,14 +2,9 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    webpack: (config) => {
-        config.resolve.fallback = { fs: false };
-        return config;
-    },
-    transpilePackages: ['react-leaflet', '@react-leaflet/core'],
-    experimental: {
-        esmExternals: 'loose'
+    images: {
+        unoptimized: true
     }
-};
+}
 
-module.exports = nextConfig; 
+module.exports = nextConfig 

@@ -1,17 +1,17 @@
-import { ReactNode } from 'react';
-
-export interface SafetyTip {
-    tip: string;
-    icon?: ReactNode;
-}
+import type { LatLngTuple } from 'leaflet';
 
 export interface District {
     name: string;
     description: string;
-    coordinates: [number, number];
     landmark: string;
     priceRange: string;
+    coordinates: [number, number]; // Using tuple type instead of LatLngTuple
     isRedZone?: boolean;
+}
+
+export interface SafetyTip {
+    tip: string;
+    icon: any; // We'll type this properly when using it
 }
 
 export interface Location {

@@ -49,39 +49,18 @@ const IntroductionContent: React.FC = () => {
                     Just buy the card if you're using public transport. 🎫
                 </Typography>
 
-                <Typography paragraph>
-                    🚇 Metro and Marmaray are the fastest ways to travel, especially during rush hours.
-                </Typography>
-                <Typography paragraph>
-                    🚕 Taxis are convenient but be cautious of scams. Always use BiTaksi or iTaksi apps.
-                </Typography>
-                <Typography paragraph>
-                    🚶‍♂️ Many historic areas are walkable, but prepare for hills and cobblestone streets.
-                </Typography>
-
-                <Typography
-                    sx={{
-                        mt: 4,
-                        pt: 2,
-                        borderTop: '1px solid rgba(102,255,178,0.2)',
-                        color: '#66FFB2',
-                        fontStyle: 'italic'
-                    }}
-                >
-                    If you want something else to be added or have a question, please DM me through Twitter or Discord. For both platforms, my username is incluck.
-                </Typography>
-
                 <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#FFD700' }}>
                     Depending on your money, time, and freedom, you'll find something for you in this guide. ✨
 
                 </Typography>
 
                 <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#FFD700' }}>
-                    Bonus: It is nice to say"teşekkürler" to show gratitude; it means "thank you" and locals love it when foreigners say it.
+                    Bonus: It is nice to say "teşekkürler" to show gratitude; it means "thank you" and locals love it when foreigners say it.
                 </Typography>
 
-
-
+                <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#66FFB2' }}>
+                    For any questions or help on guide, you can contact me via twitter and discord: incluck
+                </Typography>
             </Paper>
         </Box>
     );

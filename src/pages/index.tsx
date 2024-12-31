@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, Tabs, Tab, Typography } from '@mui/material';
+import { Box, Tabs, Tab } from '@mui/material';
 import Image from 'next/image';
 import {
     LocationOn,
@@ -22,12 +22,12 @@ const ActivitiesContent = dynamic(() => import('../components/ActivitiesContent'
 
 // Define the data
 const safetyTips: SafetyTip[] = [
-    { tip: "Always have VPN on your mobile - Discord is banned in Turkey!", icon: <Warning /> },
-    { tip: "Use Uber for taxis and pay online to avoid price scams", icon: <Warning /> },
-    { tip: "Don't enter dark alleys, especially in Tarlabaşı area", icon: <Warning /> },
-    { tip: "Pickpocket awareness - don't put valuables in back pockets", icon: <Warning /> },
-    { tip: "Avoid counting money in the middle of the street", icon: <Warning /> },
-    { tip: "Don't smoke in public areas - it's restricted", icon: <Warning /> }
+    { tip: "Always have VPN on your mobile - Discord is banned in Turkey!", icon: Warning },
+    { tip: "Use Uber for taxis and pay online to avoid price scams", icon: Warning },
+    { tip: "Don't enter dark alleys, especially in Tarlabaşı area", icon: Warning },
+    { tip: "Pickpocket awareness - don't put valuables in back pockets", icon: Warning },
+    { tip: "Avoid counting money in the middle of the street", icon: Warning },
+    { tip: "Don't smoke in public areas - it's restricted", icon: Warning }
 ];
 
 const districts: District[] = [
@@ -36,36 +36,36 @@ const districts: District[] = [
         description: "Luxury shopping and fine dining district",
         landmark: "Nişantaşı City's Mall",
         priceRange: "$$-$$$",
-        coordinates: [41.0488, 28.9951]
+        coordinates: [41.0488, 28.9951] as [number, number]
     },
     {
         name: "İstiklal Caddesi",
         description: "Historic pedestrian street with shops and cafes",
         landmark: "Galata Tower",
         priceRange: "$$",
-        coordinates: [41.0355, 28.9778]
+        coordinates: [41.0335, 28.9777] as [number, number]
     },
     {
         name: "Beşiktaş",
         description: "Vibrant neighborhood with great nightlife",
         landmark: "Beşiktaş Fish Market",
         priceRange: "$$",
-        coordinates: [41.0430, 29.0046]
+        coordinates: [41.0430, 29.0046] as [number, number]
     },
     {
         name: "Arnavutköy",
         description: "Charming neighborhood with seafood restaurants",
         landmark: "Arnavutköy Pier",
         priceRange: "$$$",
-        coordinates: [41.0555, 29.0357]
+        coordinates: [41.0555, 29.0357] as [number, number]
     },
     {
         name: "Bebek",
         description: "Runners' paradise, luxurious breakfast spots. High-level food. Morning coffee routine for rich.",
         landmark: "Bebek Sahili",
         priceRange: "$$$",
-        coordinates: [41.0776519, 29.0440416]
-    }
+        coordinates: [41.0776519, 29.0440416] as [number, number]
+    },
 ];
 
 interface TabPanelProps {
@@ -93,7 +93,7 @@ const TabPanel: React.FC<TabPanelProps> = (props) => {
     );
 };
 
-const IstanbulGuide: React.FC = () => {
+const Home: React.FC = () => {
     const [selectedTab, setSelectedTab] = React.useState(0);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -259,4 +259,4 @@ const IstanbulGuide: React.FC = () => {
     );
 };
 
-export default IstanbulGuide; 
+export default Home; 

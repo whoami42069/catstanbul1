@@ -2,17 +2,8 @@ import React from 'react';
 import { Typography, Box, Paper, Grid } from '@mui/material';
 import Map from './Map';
 import LocationCard from './LocationCard';
-import type { Location } from './Map';
+import type { District } from '../types/common';
 import { Warning } from '@mui/icons-material';
-
-interface District {
-    name: string;
-    description: string;
-    coordinates: [number, number];
-    landmark: string;
-    priceRange: string;
-    isRedZone?: boolean;
-}
 
 interface DistrictsContentProps {
     districts: District[];

@@ -5,11 +5,7 @@ import {
     NightlightRound, RemoveRedEye, SmokeFree, LocationOff,
     SupportAgent, EmojiPeople, Favorite
 } from '@mui/icons-material';
-
-interface SafetyTip {
-    icon?: React.ReactNode;
-    tip: string;
-}
+import type { SafetyTip } from '../types/common';
 
 interface SafetyContentProps {
     tips: SafetyTip[];
