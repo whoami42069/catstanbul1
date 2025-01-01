@@ -73,8 +73,20 @@ const SafetyContent: React.FC<SafetyContentProps> = ({ tips }) => {
                         variant="outlined"
                     />
                     <Chip
+                        icon={<Warning />}
+                        label="Police: 155"
+                        color="error"
+                        variant="outlined"
+                    />
+                    <Chip
                         icon={<LocalTaxi />}
-                        label="Tourist Police: 155"
+                        label="Tourist Police: +90 212 527 4503"
+                        color="primary"
+                        variant="outlined"
+                    />
+                    <Chip
+                        icon={<LocalTaxi />}
+                        label="Tourist Police WhatsApp: +90 505 187 6614"
                         color="primary"
                         variant="outlined"
                     />
