@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Paper, List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material';
+import { Typography, Box, Paper, List, ListItem, ListItemIcon, ListItemText, Divider, Link } from '@mui/material';
 import { VpnLock, WhatsApp, DirectionsWalk, SubwayOutlined, AttachMoney, LocationCity } from '@mui/icons-material';
 
 const IntroductionContent: React.FC = () => {
@@ -32,18 +32,44 @@ const IntroductionContent: React.FC = () => {
                     high-quality product prices with cities that have a population of a million or two. 💰
                 </Typography>
 
-                <Divider sx={{ my: 2 }} />
+                <Divider sx={{ my: 3 }} />
 
-                <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#FFD700' }}>
-                    Depending on your money, time, and freedom, you'll find something for you in this guide. ✨
-
+                <Typography
+                    variant="h6"
+                    sx={{
+                        mt: 3,
+                        mb: 3,
+                        fontSize: '1.5em',
+                        fontWeight: 'bold',
+                        color: '#FFD700'
+                    }}
+                >
+                    Visa Information:{' '}
+                    <Link
+                        href="https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                            color: '#FFD700',
+                            textDecoration: 'underline',
+                            '&:hover': {
+                                color: '#66FFB2'
+                            }
+                        }}
+                    >
+                        Click here for official visa requirements
+                    </Link>
                 </Typography>
 
-                <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#FFD700' }}>
+                <Typography paragraph sx={{ mb: 3 }}>
+                    Depending on your money, time, and freedom, you'll find something for you in this guide. ✨
+                </Typography>
+
+                <Typography paragraph sx={{ mb: 3 }}>
                     Bonus: It is nice to say "teşekkürler" to show gratitude; it means "thank you" and locals love it when foreigners say it.
                 </Typography>
 
-                <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#66FFB2' }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: 'bold', color: '#66FFB2' }}>
                     For any questions or help on guide, you can contact me via twitter and discord: incluck
                 </Typography>
             </Paper>
