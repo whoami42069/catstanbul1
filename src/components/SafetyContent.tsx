@@ -3,7 +3,7 @@ import { Box, Paper, Typography, List, ListItem, ListItemIcon, ListItemText, Chi
 import {
     VpnLock, Warning, MoneyOff, SecurityOutlined, LocalTaxi,
     NightlightRound, RemoveRedEye, SmokeFree, LocationOff,
-    SupportAgent, EmojiPeople, Favorite
+    SupportAgent, EmojiPeople, Favorite, Phone, PhoneInTalk
 } from '@mui/icons-material';
 import type { SafetyTip } from '../types/common';
 
@@ -34,6 +34,23 @@ const SafetyContent: React.FC<SafetyContentProps> = ({ tips }) => {
             </Typography>
 
             <Paper elevation={3} sx={{ p: 3, bgcolor: 'rgba(0,0,0,0.02)' }}>
+                <Box sx={{ mb: 4, p: 3, borderRadius: 2, bgcolor: 'rgba(102,255,178,0.1)', border: '1px solid rgba(102,255,178,0.3)' }}>
+                    <Typography variant="h6" gutterBottom sx={{ color: '#66FFB2' }}>
+                        Welcome to Istanbul! 🌟
+                    </Typography>
+                    <Typography paragraph>
+                        Istanbul is one of the world's most vibrant and visited cities, welcoming millions of tourists every year.
+                        Like any major cosmopolitan city such as New York, London, or Paris, it's generally safe while requiring
+                        the usual urban awareness. Most tourists explore the city without any issues, enjoying its rich history,
+                        culture, and hospitality.
+                    </Typography>
+                    <Typography>
+                        The tips below are meant to help you have the best possible experience in our beautiful city,
+                        just as you would want to know the local insights for any global destination. Let's make sure
+                        your Istanbul adventure is memorable for all the right reasons! 🌉
+                    </Typography>
+                </Box>
+
                 <List>
                     {safetyTips.map((tip, index) => (
                         <ListItem
@@ -67,25 +84,25 @@ const SafetyContent: React.FC<SafetyContentProps> = ({ tips }) => {
 
                 <Box sx={{ mt: 3, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                     <Chip
-                        icon={<Warning />}
+                        icon={<Phone />}
                         label="Emergency: 112"
                         color="error"
                         variant="outlined"
                     />
                     <Chip
-                        icon={<Warning />}
+                        icon={<Phone />}
                         label="Police: 155"
                         color="error"
                         variant="outlined"
                     />
                     <Chip
-                        icon={<LocalTaxi />}
+                        icon={<Phone />}
                         label="Tourist Police: +90 212 527 4503"
                         color="primary"
                         variant="outlined"
                     />
                     <Chip
-                        icon={<LocalTaxi />}
+                        icon={<PhoneInTalk />}
                         label="Tourist Police WhatsApp: +90 505 187 6614"
                         color="primary"
                         variant="outlined"

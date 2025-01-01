@@ -34,21 +34,6 @@ const IntroductionContent: React.FC = () => {
 
                 <Divider sx={{ my: 2 }} />
 
-                <Typography variant="h6" gutterBottom>
-                    Transportation Tips 🚇
-                </Typography>
-
-                <Typography paragraph>
-                    In Turkey, Uber is just a software for taxis; we don't have private Uber cars. For public transportation like the subway
-                    or buses, you'll need an Istanbulcard, which you can buy near any subway station. No ID is needed; it costs around 3-4 dollars.
-                    You can top up with cash or a credit card.
-                </Typography>
-
-                <Typography paragraph>
-                    Pro tip: Don't buy a 2-pass or similar; it's overly expensive. We're degens who like to keep something as a memory.
-                    Just buy the card if you're using public transport. 🎫
-                </Typography>
-
                 <Typography variant="subtitle1" sx={{ mt: 3, fontWeight: 'bold', color: '#FFD700' }}>
                     Depending on your money, time, and freedom, you'll find something for you in this guide. ✨
 

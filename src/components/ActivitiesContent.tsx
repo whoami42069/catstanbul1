@@ -7,7 +7,7 @@ import type { Location } from './Map';
 const touristLocations: Location[] = [
     {
         name: "Hagia Sophia",
-        description: "A magnificent structure that served as a church, mosque, museum, and now a mosque again. This architectural marvel showcases Byzantine and Ottoman influences.",
+        description: "A breathtaking architectural masterpiece that has served as a church, mosque, and now a mosque again. Its stunning dome, intricate mosaics, and rich history make it a must-see UNESCO World Heritage site.",
         coordinates: [41.0086, 28.9802]
     },
     {
@@ -22,7 +22,7 @@ const touristLocations: Location[] = [
     },
     {
         name: "Topkapi Palace",
-        description: "Former residence of Ottoman sultans, now a museum showcasing imperial collections, sacred relics, and stunning architecture with views of the Bosphorus.",
+        description: "The heart of the Ottoman Empire for nearly 400 years. This magnificent palace complex offers stunning views of the Bosphorus and houses incredible collections of Ottoman treasures and sacred Islamic relics.",
         coordinates: [41.0115, 28.9833]
     },
     {
@@ -32,7 +32,7 @@ const touristLocations: Location[] = [
     },
     {
         name: "Grand Bazaar",
-        description: "One of the world's oldest and largest covered markets with over 4,000 shops selling carpets, jewelry, ceramics, and more.",
+        description: "One of the world's oldest and largest covered markets with over 4,000 shops. While it's a must-see historical site, be cautious with shopping as prices can be 3-4 times higher than elsewhere, even after bargaining.",
         coordinates: [41.0108, 28.9680]
     },
     {
@@ -64,6 +64,16 @@ const touristLocations: Location[] = [
         name: "Suleymaniye Mosque",
         description: "Ottoman imperial mosque with stunning architecture and panoramic views of the city.",
         coordinates: [41.0163, 28.9634]
+    },
+    {
+        name: "Atatürk Arboretum",
+        description: "A peaceful botanical garden perfect for nature walks and exploring diverse plant species. This hidden gem offers a refreshing escape from the city's bustle.",
+        coordinates: [41.1783, 28.9897]
+    },
+    {
+        name: "Turkcell Platinum Park",
+        description: "A vibrant and modern venue in Emirgan offering a mix of green spaces, dining options, and entertainment. Perfect for relaxing or enjoying quality time with stunning Bosphorus views.",
+        coordinates: [41.1089, 29.0550]
     }
 ];
 
@@ -104,17 +114,19 @@ const ActivitiesContent: React.FC = () => {
                                                 </Link>
                                             </>
                                         )}
-                                        {location.name === "Hagia Sophia" && "⏰ Open daily for visits (except prayer times) | 🎫 Free entrance"}
+                                        {location.name === "Hagia Sophia" && "⏰ Open daily for visits (except prayer times) | 🎫 Free entrance | 🌟 UNESCO World Heritage Site"}
                                         {location.name === "Yedikule Zindanları (Dungeons)" && "⏰ 9:00 AM - 5:00 PM (Closed on Mondays) | 🎫 Paid entrance | 🚶‍♂️ Wear comfortable shoes"}
-                                        {location.name === "Topkapi Palace" && "⏰ 9:00 AM - 6:00 PM (Closed on Tuesdays) | 🎫 Paid entrance"}
+                                        {location.name === "Topkapi Palace" && "⏰ 9:00 AM - 6:00 PM (Closed on Tuesdays) | 🎫 Paid entrance | 🌟 Must see Harem section"}
                                         {location.name === "Blue Mosque" && "⏰ Open daily (except prayer times) | 🎫 Free entrance"}
-                                        {location.name === "Grand Bazaar" && "⏰ 8:30 AM - 7:00 PM (Closed on Sundays) | 🛍️ Bring cash"}
+                                        {location.name === "Grand Bazaar" && "⏰ 8:30 AM - 7:00 PM (Closed on Sundays) | 🛍️ Bring cash | ⚠️ Be cautious with prices"}
                                         {location.name === "Egyptian Bazaar (Spice Bazaar)" && "⏰ 8:30 AM - 7:00 PM (Open daily) | 🛍️ Bring cash for best deals"}
                                         {location.name === "Galatasaray Hamamı" && "⏰ 7:00 AM - 10:00 PM | 🎫 Paid service | 🧖‍♂️ Bring swimwear"}
                                         {location.name === "Basilica Cistern" && "⏰ 9:00 AM - 7:00 PM | 🎫 Paid entrance"}
                                         {location.name === "Galata Tower" && "⏰ 8:30 AM - 11:00 PM | 🎫 Paid entrance"}
                                         {location.name === "Dolmabahce Palace" && "⏰ 9:00 AM - 4:00 PM (Closed on Mondays) | 🎫 Paid entrance"}
                                         {location.name === "Suleymaniye Mosque" && "⏰ Open daily (except prayer times) | 🎫 Free entrance"}
+                                        {location.name === "Atatürk Arboretum" && "⏰ 8:00 AM - 5:00 PM | 🎫 Paid entrance | 🍂 Best in autumn"}
+                                        {location.name === "Turkcell Platinum Park" && "⏰ Open daily | 🎫 Free entrance | 🌅 Great for sunset views"}
                                     </Typography>
                                 }
                             />
