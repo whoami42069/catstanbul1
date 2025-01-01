@@ -7,7 +7,9 @@ import {
     Restaurant,
     Nightlife,
     Pets,
-    Attractions
+    Attractions,
+    DirectionsSubway,
+    VerifiedUser
 } from '@mui/icons-material';
 import dynamic from 'next/dynamic';
 import type { District, SafetyTip } from '../types/common';
@@ -19,6 +21,8 @@ const NightlifeContent = dynamic(() => import('../components/NightlifeContent'))
 const FoodGuideContent = dynamic(() => import('../components/FoodGuideContent'));
 const CatSpotsContent = dynamic(() => import('../components/CatSpotsContent'));
 const ActivitiesContent = dynamic(() => import('../components/ActivitiesContent'));
+const TransportationContent = dynamic(() => import('../components/TransportationContent'));
+const VisaContent = dynamic(() => import('../components/VisaContent'));
 
 // Define the data
 const safetyTips: SafetyTip[] = [
@@ -54,35 +58,35 @@ const districts: District[] = [
     },
     {
         name: "Nişantaşı",
-        description: "Luxury shopping and fine dining district",
+        description: "Luxury shopping and fine dining district with elegant architecture and high-end boutiques. Home to designer stores, gourmet restaurants, and sophisticated cafes.",
         landmark: "Nişantaşı City's Mall",
         priceRange: "$$-$$$",
         coordinates: [41.0488, 28.9951] as [number, number]
     },
     {
         name: "İstiklal Caddesi",
-        description: "Historic pedestrian street with shops and cafes",
+        description: "Historic pedestrian street with a perfect blend of shopping, dining, and culture. Lined with historic buildings, international brands, local shops, and street performers.",
         landmark: "Galata Tower",
         priceRange: "$$",
         coordinates: [41.0335, 28.9777] as [number, number]
     },
     {
         name: "Beşiktaş",
-        description: "Vibrant neighborhood with great nightlife",
+        description: "Vibrant neighborhood with great nightlife, traditional markets, and a youthful atmosphere. Famous for its fish market, street food, and energetic football culture.",
         landmark: "Beşiktaş Fish Market",
         priceRange: "$$",
         coordinates: [41.0430, 29.0046] as [number, number]
     },
     {
         name: "Arnavutköy",
-        description: "Charming neighborhood with seafood restaurants",
+        description: "Charming historic neighborhood with beautiful wooden houses and seafood restaurants along the Bosphorus. Known for its romantic atmosphere and waterfront dining.",
         landmark: "Arnavutköy Pier",
         priceRange: "$$$",
         coordinates: [41.0555, 29.0357] as [number, number]
     },
     {
         name: "Bebek",
-        description: "Runners' paradise, luxurious breakfast spots. High-level food. Morning coffee routine for rich.",
+        description: "Upscale waterfront neighborhood perfect for morning runs and luxury dining. Famous for its breakfast spots, coffee culture, and beautiful coastal promenade.",
         landmark: "Bebek Sahili",
         priceRange: "$$$",
         coordinates: [41.0776519, 29.0440416] as [number, number]
@@ -95,36 +99,32 @@ const districts: District[] = [
         coordinates: [41.0819, 29.0328] as [number, number]
     },
     {
-        name: "Tarlabaşı ⚠️ DO NOT GO",
-        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Known for high crime rates and unsafe conditions, especially at night. Stay away from this district for your safety.",
-        landmark: "Avoid Area",
-        priceRange: "N/A",
-        coordinates: [41.0382, 28.9729] as [number, number],
-        isRedZone: true
+        name: "Galataport",
+        description: "Modern waterfront development combining culture, dining, and shopping. Features world-class museums, international restaurants, and a cruise port with stunning Bosphorus views.",
+        landmark: "Istanbul Modern Museum",
+        priceRange: "$$$",
+        coordinates: [41.0252, 28.9831] as [number, number]
     },
     {
-        name: "Kuştepe ⚠️ DO NOT GO",
-        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Unsafe neighborhood with high risk of crime. Not recommended for tourists or locals.",
-        landmark: "Avoid Area",
-        priceRange: "N/A",
-        coordinates: [41.0679, 28.9897] as [number, number],
-        isRedZone: true
+        name: "Kuzguncuk",
+        description: "Picturesque neighborhood on the Asian side known for its colorful historic houses and artistic community. Tree-lined streets filled with cozy cafes, art galleries, and local boutiques.",
+        landmark: "Kuzguncuk Synagogue",
+        priceRange: "$$",
+        coordinates: [41.0340971, 29.0339012] as [number, number]
     },
     {
-        name: "Dolapdere ⚠️ DO NOT GO",
-        description: "⛔ DANGEROUS AREA - DO NOT VISIT! High-risk area, especially after dark. Stay away from this district for your safety.",
-        landmark: "Avoid Area",
-        priceRange: "N/A",
-        coordinates: [41.0424, 28.9741] as [number, number],
-        isRedZone: true
+        name: "Ortaköy",
+        description: "Charming waterfront district famous for its iconic mosque and vibrant street food scene. Must-try local specialty is kumpir (stuffed baked potatoes) while enjoying Bosphorus views.",
+        landmark: "Ortaköy Mosque",
+        priceRange: "$$",
+        coordinates: [41.0474, 29.0277] as [number, number]
     },
     {
-        name: "Esenyurt ⚠️ DO NOT GO",
-        description: "⛔ DANGEROUS AREA - DO NOT VISIT! Far from tourist areas and known for safety issues. Not recommended for visitors.",
-        landmark: "Avoid Area",
-        priceRange: "N/A",
-        coordinates: [41.0289, 28.6728] as [number, number],
-        isRedZone: true
+        name: "Bağdat Avenue",
+        description: "Prestigious shopping street on the Asian side lined with luxury boutiques and cafes. A favorite destination for high-end shopping, dining, and leisurely strolls.",
+        landmark: "Suadiye",
+        priceRange: "$$$",
+        coordinates: [40.9625, 29.0750] as [number, number]
     }
 ];
 
@@ -252,11 +252,13 @@ const Home: React.FC = () => {
                         >
                             <Tab icon={<LocationOn />} label="Introduction" />
                             <Tab icon={<Warning />} label="Safety" />
+                            <Tab icon={<DirectionsSubway />} label="Transportation" />
                             <Tab icon={<Attractions />} label="Activities" />
                             <Tab icon={<Pets />} label="Cat Spots" />
                             <Tab icon={<LocationOn />} label="Districts" />
                             <Tab icon={<Restaurant />} label="Food" />
                             <Tab icon={<Nightlife />} label="Nightlife" />
+                            <Tab icon={<VerifiedUser />} label="Visa" />
                         </Tabs>
                     </Box>
                 </Box>
@@ -268,19 +270,25 @@ const Home: React.FC = () => {
                     <SafetyContent tips={safetyTips} />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={2}>
-                    <ActivitiesContent />
+                    <TransportationContent />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={3}>
-                    <CatSpotsContent />
+                    <ActivitiesContent />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={4}>
-                    <DistrictsContent districts={districts} />
+                    <CatSpotsContent />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={5}>
-                    <FoodGuideContent />
+                    <DistrictsContent districts={districts} />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={6}>
+                    <FoodGuideContent />
+                </TabPanel>
+                <TabPanel value={selectedTab} index={7}>
                     <NightlifeContent />
+                </TabPanel>
+                <TabPanel value={selectedTab} index={8}>
+                    <VisaContent />
                 </TabPanel>
 
                 <Box
