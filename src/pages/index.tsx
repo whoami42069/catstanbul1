@@ -273,13 +273,13 @@ const Home: React.FC = () => {
                     width: '100%',
                     height: '100%',
                     backgroundImage: 'url(/images/jupiter-ag-jup-logo.png)',
-                    backgroundSize: '800px',
+                    backgroundSize: { xs: '300px', sm: '800px' },
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    opacity: 0.15,
+                    opacity: { xs: 0.08, sm: 0.15 },
                     zIndex: 0,
-                    filter: 'blur(1px)',
-                    pointerEvents: 'none',
+                    filter: { xs: 'blur(1.5px)', sm: 'blur(1px)' },
+                    pointerEvents: 'none'
                 }
             }}
         >
