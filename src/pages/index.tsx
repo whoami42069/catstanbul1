@@ -155,7 +155,7 @@ const TabPanel: React.FC<TabPanelProps> = (props) => {
 };
 
 const Home: React.FC = () => {
-    const [selectedTab, setSelectedTab] = React.useState(0);
+    const [selectedTab, setSelectedTab] = React.useState(-1);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -165,8 +165,70 @@ const Home: React.FC = () => {
 
     const handleReturnToTabs = () => {
         if (isMobile) {
-            setSelectedTab(-1); // Special value to show only tabs
+            setSelectedTab(-1);
         }
+    };
+
+    const renderMobileGrid = () => {
+        const tabs = [
+            { icon: <LocationOn />, label: "Introduction" },
+            { icon: <Warning />, label: "Safety" },
+            { icon: <DirectionsSubway />, label: "Transportation" },
+            { icon: <Attractions />, label: "Activities" },
+            { icon: <Pets />, label: "Cat Spots" },
+            { icon: <LocationOn />, label: "Districts" },
+            { icon: <Restaurant />, label: "Food" },
+            { icon: <Nightlife />, label: "Nightlife" },
+            { icon: <ShoppingBag />, label: "Shopping" }
+        ];
+
+        return (
+            <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: 2,
+                p: 2
+            }}>
+                {tabs.map((tab, index) => (
+                    <Box
+                        key={index}
+                        onClick={() => setSelectedTab(index)}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            p: 2,
+                            borderRadius: '12px',
+                            backgroundColor: 'rgba(102,255,178,0.1)',
+                            border: '1px solid rgba(102,255,178,0.2)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                backgroundColor: 'rgba(102,255,178,0.2)',
+                                transform: 'translateY(-2px)'
+                            }
+                        }}
+                    >
+                        {React.cloneElement(tab.icon, {
+                            sx: {
+                                fontSize: '2rem',
+                                color: '#66FFB2',
+                                mb: 1
+                            }
+                        })}
+                        <Box sx={{
+                            color: '#66FFB2',
+                            textAlign: 'center',
+                            fontSize: '1rem',
+                            fontWeight: 'medium'
+                        }}>
+                            {tab.label}
+                        </Box>
+                    </Box>
+                ))}
+            </Box>
+        );
     };
 
     return (
@@ -195,104 +257,111 @@ const Home: React.FC = () => {
         >
             <Box sx={{ position: 'relative', zIndex: 1, p: 3 }}>
                 {isMobile && selectedTab !== -1 && (
-                    <IconButton
-                        onClick={handleReturnToTabs}
-                        sx={{
-                            position: 'absolute',
-                            top: 16,
-                            left: 16,
-                            zIndex: 2,
-                            color: '#66FFB2',
-                            backgroundColor: 'rgba(0,0,0,0.3)',
-                            '&:hover': {
-                                backgroundColor: 'rgba(0,0,0,0.5)',
-                            }
-                        }}
-                    >
-                        <ArrowBack />
-                    </IconButton>
+                    <Box sx={{
+                        position: 'absolute',
+                        top: 16,
+                        left: 16,
+                        zIndex: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 1,
+                        backgroundColor: 'rgba(0,0,0,0.3)',
+                        borderRadius: '20px',
+                        padding: '8px 16px',
+                        cursor: 'pointer',
+                        '&:hover': {
+                            backgroundColor: 'rgba(0,0,0,0.5)',
+                        }
+                    }} onClick={handleReturnToTabs}>
+                        <ArrowBack sx={{ color: '#66FFB2' }} />
+                        <Box sx={{ color: '#66FFB2', fontSize: '0.9rem' }}>
+                            Return to main menu
+                        </Box>
+                    </Box>
                 )}
 
                 {(!isMobile || selectedTab === -1) && (
-                    <Box sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mb: 4,
-                        mt: 2,
-                    }}>
+                    isMobile ? renderMobileGrid() : (
                         <Box sx={{
-                            padding: { xs: '8px', sm: '12px' },
-                            borderRadius: '20px',
-                            background: 'linear-gradient(145deg, rgba(102,255,178,0.12), rgba(102,255,178,0.03))',
-                            backdropFilter: 'blur(8px)',
-                            border: '1px solid rgba(102,255,178,0.2)',
-                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                            width: '100%',
-                            overflowX: 'auto',
-                            '&:hover': {
-                                background: 'linear-gradient(145deg, rgba(102,255,178,0.18), rgba(102,255,178,0.08))',
-                                boxShadow: '0 0 30px rgba(102,255,178,0.25)',
-                            }
+                            display: 'flex',
+                            justifyContent: 'center',
+                            mb: 4,
+                            mt: 2,
                         }}>
-                            <Tabs
-                                value={selectedTab === -1 ? false : selectedTab}
-                                onChange={handleTabChange}
-                                variant="scrollable"
-                                scrollButtons="auto"
-                                allowScrollButtonsMobile
-                                sx={{
-                                    '& .MuiTabs-flexContainer': {
-                                        justifyContent: { xs: 'flex-start', sm: 'center' },
-                                    },
-                                    '& .MuiTabs-scroller': {
-                                        scrollBehavior: 'smooth',
-                                    },
-                                    '& .MuiTab-root': {
-                                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
-                                        padding: { xs: '8px 16px', sm: '12px 24px' },
-                                        minHeight: { xs: '48px', sm: '64px' },
-                                        color: '#66FFB2',
-                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                        whiteSpace: 'nowrap',
-                                        minWidth: { xs: 'auto', sm: '120px' },
-                                        '&:hover': {
-                                            color: '#FFFFFF',
-                                            transform: 'translateY(-3px)',
-                                            textShadow: '0 0 10px rgba(102,255,178,0.5)',
+                            <Box sx={{
+                                padding: { xs: '8px', sm: '12px' },
+                                borderRadius: '20px',
+                                background: 'linear-gradient(145deg, rgba(102,255,178,0.12), rgba(102,255,178,0.03))',
+                                backdropFilter: 'blur(8px)',
+                                border: '1px solid rgba(102,255,178,0.2)',
+                                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                width: '100%',
+                                overflowX: 'auto',
+                                '&:hover': {
+                                    background: 'linear-gradient(145deg, rgba(102,255,178,0.18), rgba(102,255,178,0.08))',
+                                    boxShadow: '0 0 30px rgba(102,255,178,0.25)',
+                                }
+                            }}>
+                                <Tabs
+                                    value={selectedTab === -1 ? false : selectedTab}
+                                    onChange={handleTabChange}
+                                    variant="scrollable"
+                                    scrollButtons="auto"
+                                    allowScrollButtonsMobile
+                                    sx={{
+                                        '& .MuiTabs-flexContainer': {
+                                            justifyContent: { xs: 'flex-start', sm: 'center' },
+                                        },
+                                        '& .MuiTabs-scroller': {
+                                            scrollBehavior: 'smooth',
+                                        },
+                                        '& .MuiTab-root': {
+                                            fontSize: { xs: '0.9rem', sm: '1.1rem' },
+                                            padding: { xs: '8px 16px', sm: '12px 24px' },
+                                            minHeight: { xs: '48px', sm: '64px' },
+                                            color: '#66FFB2',
+                                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            whiteSpace: 'nowrap',
+                                            minWidth: { xs: 'auto', sm: '120px' },
+                                            '&:hover': {
+                                                color: '#FFFFFF',
+                                                transform: 'translateY(-3px)',
+                                                textShadow: '0 0 10px rgba(102,255,178,0.5)',
+                                                '& .MuiSvgIcon-root': {
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                }
+                                            },
+                                            '&.Mui-selected': {
+                                                color: '#FFFFFF',
+                                            },
                                             '& .MuiSvgIcon-root': {
-                                                transform: 'scale(1.15) rotate(5deg)',
+                                                fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                                                mb: { xs: 0.5, sm: 1 },
+                                                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                color: '#66FFB2'
                                             }
                                         },
-                                        '&.Mui-selected': {
-                                            color: '#FFFFFF',
-                                        },
-                                        '& .MuiSvgIcon-root': {
-                                            fontSize: { xs: '1.2rem', sm: '1.5rem' },
-                                            mb: { xs: 0.5, sm: 1 },
-                                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                            color: '#66FFB2'
+                                        '& .MuiTabs-indicator': {
+                                            backgroundColor: '#66FFB2',
+                                            height: '3px',
+                                            borderRadius: '3px',
+                                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                                         }
-                                    },
-                                    '& .MuiTabs-indicator': {
-                                        backgroundColor: '#66FFB2',
-                                        height: '3px',
-                                        borderRadius: '3px',
-                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
-                                    }
-                                }}
-                            >
-                                <Tab icon={<LocationOn />} label="Introduction" />
-                                <Tab icon={<Warning />} label="Safety" />
-                                <Tab icon={<DirectionsSubway />} label="Transportation" />
-                                <Tab icon={<Attractions />} label="Activities" />
-                                <Tab icon={<Pets />} label="Cat Spots" />
-                                <Tab icon={<LocationOn />} label="Districts" />
-                                <Tab icon={<Restaurant />} label="Food" />
-                                <Tab icon={<Nightlife />} label="Nightlife" />
-                                <Tab icon={<ShoppingBag />} label="Shopping" />
-                            </Tabs>
+                                    }}
+                                >
+                                    <Tab icon={<LocationOn />} label="Introduction" />
+                                    <Tab icon={<Warning />} label="Safety" />
+                                    <Tab icon={<DirectionsSubway />} label="Transportation" />
+                                    <Tab icon={<Attractions />} label="Activities" />
+                                    <Tab icon={<Pets />} label="Cat Spots" />
+                                    <Tab icon={<LocationOn />} label="Districts" />
+                                    <Tab icon={<Restaurant />} label="Food" />
+                                    <Tab icon={<Nightlife />} label="Nightlife" />
+                                    <Tab icon={<ShoppingBag />} label="Shopping" />
+                                </Tabs>
+                            </Box>
                         </Box>
-                    </Box>
+                    )
                 )}
 
                 {(!isMobile || selectedTab !== -1) && (
@@ -327,7 +396,7 @@ const Home: React.FC = () => {
                     </>
                 )}
 
-                {(!isMobile || selectedTab === -1) && (
+                {(!isMobile || selectedTab === -1) && !isMobile && (
                     <Box
                         sx={{
                             width: '100%',
