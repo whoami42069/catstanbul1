@@ -9,7 +9,7 @@ import {
     Pets,
     Attractions,
     DirectionsSubway,
-    VerifiedUser
+    ShoppingBag
 } from '@mui/icons-material';
 import dynamic from 'next/dynamic';
 import type { District, SafetyTip } from '../types/common';
@@ -22,7 +22,7 @@ const FoodGuideContent = dynamic(() => import('../components/FoodGuideContent'))
 const CatSpotsContent = dynamic(() => import('../components/CatSpotsContent'));
 const ActivitiesContent = dynamic(() => import('../components/ActivitiesContent'));
 const TransportationContent = dynamic(() => import('../components/TransportationContent'));
-const VisaContent = dynamic(() => import('../components/VisaContent'));
+const ShoppingContent = dynamic(() => import('../components/ShoppingContent'));
 
 // Define the data
 const safetyTips: SafetyTip[] = [
@@ -258,7 +258,7 @@ const Home: React.FC = () => {
                             <Tab icon={<LocationOn />} label="Districts" />
                             <Tab icon={<Restaurant />} label="Food" />
                             <Tab icon={<Nightlife />} label="Nightlife" />
-                            <Tab icon={<VerifiedUser />} label="Visa" />
+                            <Tab icon={<ShoppingBag />} label="Shopping" />
                         </Tabs>
                     </Box>
                 </Box>
@@ -288,7 +288,7 @@ const Home: React.FC = () => {
                     <NightlifeContent />
                 </TabPanel>
                 <TabPanel value={selectedTab} index={8}>
-                    <VisaContent />
+                    <ShoppingContent />
                 </TabPanel>
 
                 <Box
