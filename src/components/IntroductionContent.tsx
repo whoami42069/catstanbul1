@@ -11,7 +11,7 @@ const IntroductionContent: React.FC = () => {
 
             <Paper className="content-card" elevation={3} sx={{ p: 3 }}>
                 <Typography paragraph>
-                    First is first. Welcome to Istanbul, catdets! In this guide, all places I recommend will be about 90% close to you.
+                    First is first. Welcome to Istanbul, catdets! In this guide, all places I recommend will be about 80% close to you.
                     Since it's a huge city, our understanding of "close" might differ. However, this is as close as it can get. 🗺️
                 </Typography>
 
