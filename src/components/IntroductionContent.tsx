@@ -66,7 +66,7 @@ const IntroductionContent: React.FC = () => {
                 </Typography>
 
                 <Typography paragraph sx={{ mb: 3 }}>
-                    Bonus: It is nice to say "teşekkürler" to show gratitude; it means "thank you" and locals love it when foreigners say it.
+                    Bonus: It is nice to say "teşekkürler /teh-shek-kur-ler/" to show gratitude; it means "thank you" and locals love it when foreigners say it.
                 </Typography>
 
                 <Typography variant="subtitle1" sx={{ fontWeight: 'bold', color: '#66FFB2' }}>
