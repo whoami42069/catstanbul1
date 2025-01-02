@@ -208,9 +208,6 @@ const Home: React.FC = () => {
                         <Tabs
                             value={selectedTab}
                             onChange={handleTabChange}
-                            variant="scrollable"
-                            scrollButtons="auto"
-                            allowScrollButtonsMobile
                             centered
                             sx={{
                                 '& .MuiTabs-flexContainer': {
