@@ -183,51 +183,79 @@ const Home: React.FC = () => {
         ];
 
         return (
-            <Box sx={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: 2,
-                p: 2
-            }}>
-                {tabs.map((tab, index) => (
-                    <Box
-                        key={index}
-                        onClick={() => setSelectedTab(index)}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            p: 2,
-                            borderRadius: '12px',
-                            backgroundColor: 'rgba(102,255,178,0.1)',
-                            border: '1px solid rgba(102,255,178,0.2)',
-                            cursor: 'pointer',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                                backgroundColor: 'rgba(102,255,178,0.2)',
-                                transform: 'translateY(-2px)'
-                            }
-                        }}
-                    >
-                        {React.cloneElement(tab.icon, {
-                            sx: {
-                                fontSize: '2rem',
+            <>
+                <Box sx={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    gap: 2,
+                    p: 2
+                }}>
+                    {tabs.map((tab, index) => (
+                        <Box
+                            key={index}
+                            onClick={() => setSelectedTab(index)}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                p: 2,
+                                borderRadius: '12px',
+                                backgroundColor: 'rgba(102,255,178,0.1)',
+                                border: '1px solid rgba(102,255,178,0.2)',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                '&:hover': {
+                                    backgroundColor: 'rgba(102,255,178,0.2)',
+                                    transform: 'translateY(-2px)'
+                                }
+                            }}
+                        >
+                            {React.cloneElement(tab.icon, {
+                                sx: {
+                                    fontSize: '2rem',
+                                    color: '#66FFB2',
+                                    mb: 1
+                                }
+                            })}
+                            <Box sx={{
                                 color: '#66FFB2',
-                                mb: 1
-                            }
-                        })}
-                        <Box sx={{
-                            color: '#66FFB2',
-                            textAlign: 'center',
-                            fontSize: '1rem',
-                            fontWeight: 'medium'
-                        }}>
-                            {tab.label}
+                                textAlign: 'center',
+                                fontSize: '1rem',
+                                fontWeight: 'medium'
+                            }}>
+                                {tab.label}
+                            </Box>
                         </Box>
+                    ))}
+                </Box>
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    mt: 3,
+                    mb: 2,
+                    px: 2
+                }}>
+                    <Box sx={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '200px',
+                        borderRadius: '12px',
+                        overflow: 'hidden'
+                    }}>
+                        <Image
+                            src="/images/catstanbulfoto1.jpg"
+                            alt="Catstanbul 2025"
+                            fill
+                            style={{
+                                objectFit: 'contain'
+                            }}
+                            priority
+                        />
                     </Box>
-                ))}
-            </Box>
+                </Box>
+            </>
         );
     };
 
