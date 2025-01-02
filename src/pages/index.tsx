@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box, Tabs, Tab, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
 import {
     LocationOn,
@@ -9,7 +9,8 @@ import {
     Pets,
     Attractions,
     DirectionsSubway,
-    ShoppingBag
+    ShoppingBag,
+    ArrowBack
 } from '@mui/icons-material';
 import dynamic from 'next/dynamic';
 import type { District, SafetyTip } from '../types/common';
@@ -155,9 +156,17 @@ const TabPanel: React.FC<TabPanelProps> = (props) => {
 
 const Home: React.FC = () => {
     const [selectedTab, setSelectedTab] = React.useState(0);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setSelectedTab(newValue);
+    };
+
+    const handleReturnToTabs = () => {
+        if (isMobile) {
+            setSelectedTab(-1); // Special value to show only tabs
+        }
     };
 
     return (
@@ -185,145 +194,172 @@ const Home: React.FC = () => {
             }}
         >
             <Box sx={{ position: 'relative', zIndex: 1, p: 3 }}>
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    mb: 4,
-                    mt: 2,
-                }}>
-                    <Box sx={{
-                        padding: { xs: '8px', sm: '12px' },
-                        borderRadius: '20px',
-                        background: 'linear-gradient(145deg, rgba(102,255,178,0.12), rgba(102,255,178,0.03))',
-                        backdropFilter: 'blur(8px)',
-                        border: '1px solid rgba(102,255,178,0.2)',
-                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                        width: '100%',
-                        overflowX: 'auto',
-                        '&:hover': {
-                            background: 'linear-gradient(145deg, rgba(102,255,178,0.18), rgba(102,255,178,0.08))',
-                            boxShadow: '0 0 30px rgba(102,255,178,0.25)',
-                        }
-                    }}>
-                        <Tabs
-                            value={selectedTab}
-                            onChange={handleTabChange}
-                            variant="scrollable"
-                            scrollButtons="auto"
-                            allowScrollButtonsMobile
-                            sx={{
-                                '& .MuiTabs-flexContainer': {
-                                    justifyContent: { xs: 'flex-start', sm: 'center' },
-                                },
-                                '& .MuiTabs-scroller': {
-                                    scrollBehavior: 'smooth',
-                                },
-                                '& .MuiTab-root': {
-                                    fontSize: { xs: '0.9rem', sm: '1.1rem' },
-                                    padding: { xs: '8px 16px', sm: '12px 24px' },
-                                    minHeight: { xs: '48px', sm: '64px' },
-                                    color: '#66FFB2',
-                                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    whiteSpace: 'nowrap',
-                                    minWidth: { xs: 'auto', sm: '120px' },
-                                    '&:hover': {
-                                        color: '#FFFFFF',
-                                        transform: 'translateY(-3px)',
-                                        textShadow: '0 0 10px rgba(102,255,178,0.5)',
-                                        '& .MuiSvgIcon-root': {
-                                            transform: 'scale(1.15) rotate(5deg)',
-                                        }
-                                    },
-                                    '&.Mui-selected': {
-                                        color: '#FFFFFF',
-                                    },
-                                    '& .MuiSvgIcon-root': {
-                                        fontSize: { xs: '1.2rem', sm: '1.5rem' },
-                                        mb: { xs: 0.5, sm: 1 },
-                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                        color: '#66FFB2'
-                                    }
-                                },
-                                '& .MuiTabs-indicator': {
-                                    backgroundColor: '#66FFB2',
-                                    height: '3px',
-                                    borderRadius: '3px',
-                                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
-                                }
-                            }}
-                        >
-                            <Tab icon={<LocationOn />} label="Introduction" />
-                            <Tab icon={<Warning />} label="Safety" />
-                            <Tab icon={<DirectionsSubway />} label="Transportation" />
-                            <Tab icon={<Attractions />} label="Activities" />
-                            <Tab icon={<Pets />} label="Cat Spots" />
-                            <Tab icon={<LocationOn />} label="Districts" />
-                            <Tab icon={<Restaurant />} label="Food" />
-                            <Tab icon={<Nightlife />} label="Nightlife" />
-                            <Tab icon={<ShoppingBag />} label="Shopping" />
-                        </Tabs>
-                    </Box>
-                </Box>
-
-                <TabPanel value={selectedTab} index={0}>
-                    <IntroductionContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={1}>
-                    <SafetyContent tips={safetyTips} />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={2}>
-                    <TransportationContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={3}>
-                    <ActivitiesContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={4}>
-                    <CatSpotsContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={5}>
-                    <DistrictsContent districts={districts} />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={6}>
-                    <FoodGuideContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={7}>
-                    <NightlifeContent />
-                </TabPanel>
-                <TabPanel value={selectedTab} index={8}>
-                    <ShoppingContent />
-                </TabPanel>
-
-                <Box
-                    sx={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        mt: 6,
-                        mb: 3
-                    }}
-                >
-                    <Box
+                {isMobile && selectedTab !== -1 && (
+                    <IconButton
+                        onClick={handleReturnToTabs}
                         sx={{
-                            position: 'relative',
-                            width: '800px',
-                            height: '400px',
-                            borderRadius: '12px',
-                            overflow: 'hidden',
-                            boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                            position: 'absolute',
+                            top: 16,
+                            left: 16,
+                            zIndex: 2,
+                            color: '#66FFB2',
+                            backgroundColor: 'rgba(0,0,0,0.3)',
+                            '&:hover': {
+                                backgroundColor: 'rgba(0,0,0,0.5)',
+                            }
                         }}
                     >
-                        <Image
-                            src="/images/catstanbulfoto1.jpg"
-                            alt="Catstanbul 2025"
-                            fill
-                            style={{
-                                objectFit: 'contain',
-                                backgroundColor: '#1a1b1f'
-                            }}
-                            priority
-                        />
+                        <ArrowBack />
+                    </IconButton>
+                )}
+
+                {(!isMobile || selectedTab === -1) && (
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        mb: 4,
+                        mt: 2,
+                    }}>
+                        <Box sx={{
+                            padding: { xs: '8px', sm: '12px' },
+                            borderRadius: '20px',
+                            background: 'linear-gradient(145deg, rgba(102,255,178,0.12), rgba(102,255,178,0.03))',
+                            backdropFilter: 'blur(8px)',
+                            border: '1px solid rgba(102,255,178,0.2)',
+                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                            width: '100%',
+                            overflowX: 'auto',
+                            '&:hover': {
+                                background: 'linear-gradient(145deg, rgba(102,255,178,0.18), rgba(102,255,178,0.08))',
+                                boxShadow: '0 0 30px rgba(102,255,178,0.25)',
+                            }
+                        }}>
+                            <Tabs
+                                value={selectedTab === -1 ? false : selectedTab}
+                                onChange={handleTabChange}
+                                variant="scrollable"
+                                scrollButtons="auto"
+                                allowScrollButtonsMobile
+                                sx={{
+                                    '& .MuiTabs-flexContainer': {
+                                        justifyContent: { xs: 'flex-start', sm: 'center' },
+                                    },
+                                    '& .MuiTabs-scroller': {
+                                        scrollBehavior: 'smooth',
+                                    },
+                                    '& .MuiTab-root': {
+                                        fontSize: { xs: '0.9rem', sm: '1.1rem' },
+                                        padding: { xs: '8px 16px', sm: '12px 24px' },
+                                        minHeight: { xs: '48px', sm: '64px' },
+                                        color: '#66FFB2',
+                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        whiteSpace: 'nowrap',
+                                        minWidth: { xs: 'auto', sm: '120px' },
+                                        '&:hover': {
+                                            color: '#FFFFFF',
+                                            transform: 'translateY(-3px)',
+                                            textShadow: '0 0 10px rgba(102,255,178,0.5)',
+                                            '& .MuiSvgIcon-root': {
+                                                transform: 'scale(1.15) rotate(5deg)',
+                                            }
+                                        },
+                                        '&.Mui-selected': {
+                                            color: '#FFFFFF',
+                                        },
+                                        '& .MuiSvgIcon-root': {
+                                            fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                                            mb: { xs: 0.5, sm: 1 },
+                                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            color: '#66FFB2'
+                                        }
+                                    },
+                                    '& .MuiTabs-indicator': {
+                                        backgroundColor: '#66FFB2',
+                                        height: '3px',
+                                        borderRadius: '3px',
+                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                                    }
+                                }}
+                            >
+                                <Tab icon={<LocationOn />} label="Introduction" />
+                                <Tab icon={<Warning />} label="Safety" />
+                                <Tab icon={<DirectionsSubway />} label="Transportation" />
+                                <Tab icon={<Attractions />} label="Activities" />
+                                <Tab icon={<Pets />} label="Cat Spots" />
+                                <Tab icon={<LocationOn />} label="Districts" />
+                                <Tab icon={<Restaurant />} label="Food" />
+                                <Tab icon={<Nightlife />} label="Nightlife" />
+                                <Tab icon={<ShoppingBag />} label="Shopping" />
+                            </Tabs>
+                        </Box>
                     </Box>
-                </Box>
+                )}
+
+                {(!isMobile || selectedTab !== -1) && (
+                    <>
+                        <TabPanel value={selectedTab} index={0}>
+                            <IntroductionContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={1}>
+                            <SafetyContent tips={safetyTips} />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={2}>
+                            <TransportationContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={3}>
+                            <ActivitiesContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={4}>
+                            <CatSpotsContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={5}>
+                            <DistrictsContent districts={districts} />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={6}>
+                            <FoodGuideContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={7}>
+                            <NightlifeContent />
+                        </TabPanel>
+                        <TabPanel value={selectedTab} index={8}>
+                            <ShoppingContent />
+                        </TabPanel>
+                    </>
+                )}
+
+                {(!isMobile || selectedTab === -1) && (
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            mt: 6,
+                            mb: 3
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                position: 'relative',
+                                width: '800px',
+                                height: '400px',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                            }}
+                        >
+                            <Image
+                                src="/images/catstanbulfoto1.jpg"
+                                alt="Catstanbul 2025"
+                                fill
+                                style={{
+                                    objectFit: 'contain',
+                                    backgroundColor: '#1a1b1f'
+                                }}
+                                priority
+                            />
+                        </Box>
+                    </Box>
+                )}
             </Box>
         </Box>
     );
